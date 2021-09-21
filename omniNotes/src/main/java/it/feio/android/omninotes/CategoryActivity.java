@@ -30,6 +30,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.smartlook.sdk.smartlook.Smartlook;
+
 import de.greenrobot.event.EventBus;
 import it.feio.android.omninotes.async.bus.CategoriesUpdatedEvent;
 import it.feio.android.omninotes.databinding.ActivityCategoryBinding;
@@ -139,11 +141,11 @@ public class CategoryActivity extends AppCompatActivity implements
     // Sets result to show proper message
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
+    Smartlook.stopRecording();
     finish();
   }
 
   public void deleteCategory() {
-
     new MaterialDialog.Builder(this)
         .title(R.string.delete_unused_category_confirmation)
         .content(R.string.delete_category_confirmation)

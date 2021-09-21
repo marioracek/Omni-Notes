@@ -27,6 +27,9 @@ import android.content.res.Configuration;
 import android.os.StrictMode;
 import androidx.multidex.MultiDexApplication;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.smartlook.sdk.smartlook.Smartlook;
+
+import io.nlopez.smartlocation.SmartLocation;
 import it.feio.android.analitica.AnalyticsHelper;
 import it.feio.android.analitica.AnalyticsHelperFactory;
 import it.feio.android.analitica.MockAnalyticsHelper;
@@ -68,6 +71,7 @@ public class OmniNotes extends MultiDexApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Smartlook.setupAndStartRecording("bdfa7fd99606952035005492aef739884121a1d1");
     mContext = getApplicationContext();
     initSharedPreferences();
     enableStrictMode();
