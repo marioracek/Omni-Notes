@@ -121,6 +121,7 @@ public class CategoryActivity extends AppCompatActivity implements
   public void saveCategory() {
 
     if (binding.categoryTitle.getText().toString().length() == 0) {
+      Smartlook.trackCustomEvent("missingTitleEvent");
       binding.categoryTitle.setError(getString(R.string.category_missing_title));
       return;
     }
@@ -166,10 +167,10 @@ public class CategoryActivity extends AppCompatActivity implements
           BaseActivity.notifyAppWidgets(OmniNotes.getAppContext());
 
           setResult(RESULT_FIRST_USER);
+          finish();
           //TODO -> tu je nejaka moja zmena
           Smartlook.trackCustomEvent("deleteEvent");
           Smartlook.stopRecording();
-          finish();
         }).build().show();
   }
 
