@@ -141,7 +141,7 @@ public class CategoryActivity extends AppCompatActivity implements
     // Sets result to show proper message
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
-    Smartlook.stopRecording();
+    //TODO -> tu som mal predtym stop recording
     finish();
   }
 
@@ -166,6 +166,9 @@ public class CategoryActivity extends AppCompatActivity implements
           BaseActivity.notifyAppWidgets(OmniNotes.getAppContext());
 
           setResult(RESULT_FIRST_USER);
+          //TODO -> tu je nejaka moja zmena
+          Smartlook.trackCustomEvent("deleteEvent");
+          Smartlook.stopRecording();
           finish();
         }).build().show();
   }
