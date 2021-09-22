@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -152,8 +153,9 @@ public class CategoryActivity extends AppCompatActivity implements
 
   public void deleteCategory() {
     //TODO -> tu je nejaka moja zmena
-    Button btn = (Button) findViewById(R.id.delete);
+    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
     Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
+    Smartlook.registerBlacklistedView(btn);
     new MaterialDialog.Builder(this)
         .title(R.string.delete_unused_category_confirmation)
         .content(R.string.delete_category_confirmation)
