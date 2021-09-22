@@ -25,12 +25,15 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.smartlook.sdk.smartlook.Smartlook;
+import com.smartlook.sdk.smartlook.core.video.sensitivity.model.SmartlookSensitivity;
 
 import de.greenrobot.event.EventBus;
 import it.feio.android.omninotes.async.bus.CategoriesUpdatedEvent;
@@ -121,6 +124,7 @@ public class CategoryActivity extends AppCompatActivity implements
   public void saveCategory() {
 
     if (binding.categoryTitle.getText().toString().length() == 0) {
+      //TODO -> tu som mal predtym stop recording
       Smartlook.trackCustomEvent("missingTitleEvent");
       binding.categoryTitle.setError(getString(R.string.category_missing_title));
       return;
@@ -147,6 +151,9 @@ public class CategoryActivity extends AppCompatActivity implements
   }
 
   public void deleteCategory() {
+    //TODO -> tu je nejaka moja zmena
+    Button btn = (Button) findViewById(R.id.delete);
+    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
     new MaterialDialog.Builder(this)
         .title(R.string.delete_unused_category_confirmation)
         .content(R.string.delete_category_confirmation)
@@ -170,7 +177,6 @@ public class CategoryActivity extends AppCompatActivity implements
           finish();
           //TODO -> tu je nejaka moja zmena
           Smartlook.trackCustomEvent("deleteEvent");
-          Smartlook.stopRecording();
         }).build().show();
   }
 
