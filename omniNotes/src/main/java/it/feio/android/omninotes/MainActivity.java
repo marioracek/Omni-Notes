@@ -111,8 +111,6 @@ public class MainActivity extends BaseActivity implements
     if (IntroActivity.mustRun()) {
       startActivity(new Intent(getApplicationContext(), IntroActivity.class));
     }
-    ImageView fabBtn = (ImageView) findViewById(R.id.fab);
-    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, fabBtn);
   }
 
   @Override
