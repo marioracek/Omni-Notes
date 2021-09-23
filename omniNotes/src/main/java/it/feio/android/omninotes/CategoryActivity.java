@@ -106,6 +106,10 @@ public class CategoryActivity extends AppCompatActivity implements
   }
 
   private void populateViews() {
+    //TODO -> tu je nejaka moja zmena
+    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
+    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
+    Smartlook.registerBlacklistedView(btn);
     binding.categoryTitle.setText(category.getName());
     binding.categoryDescription.setText(category.getDescription());
     // Reset picker to saved color
@@ -126,7 +130,7 @@ public class CategoryActivity extends AppCompatActivity implements
 
     if (binding.categoryTitle.getText().toString().length() == 0) {
       //TODO -> tu som mal predtym stop recording
-      Smartlook.trackCustomEvent("missingTitleEvent");
+      Smartlook.trackCustomEvent("missing_title_event");
       binding.categoryTitle.setError(getString(R.string.category_missing_title));
       return;
     }
@@ -147,15 +151,10 @@ public class CategoryActivity extends AppCompatActivity implements
     // Sets result to show proper message
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
-    //TODO -> tu som mal predtym stop recording
     finish();
   }
 
   public void deleteCategory() {
-    //TODO -> tu je nejaka moja zmena
-    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
-    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
-    Smartlook.registerBlacklistedView(btn);
     new MaterialDialog.Builder(this)
         .title(R.string.delete_unused_category_confirmation)
         .content(R.string.delete_category_confirmation)
@@ -178,7 +177,7 @@ public class CategoryActivity extends AppCompatActivity implements
           setResult(RESULT_FIRST_USER);
           finish();
           //TODO -> tu je nejaka moja zmena
-          Smartlook.trackCustomEvent("deleteEvent");
+          Smartlook.trackCustomEvent("delete_category_event");
         }).build().show();
   }
 
