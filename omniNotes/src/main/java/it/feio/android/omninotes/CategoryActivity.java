@@ -109,7 +109,7 @@ public class CategoryActivity extends AppCompatActivity implements
     //TODO -> tu je nejaka moja zmena
     ImageView btn = (ImageView) findViewById(R.id.color_chooser);
     Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
-    Smartlook.registerBlacklistedView(btn);
+    //Smartlook.registerBlacklistedView(btn);
     binding.categoryTitle.setText(category.getName());
     binding.categoryDescription.setText(category.getDescription());
     // Reset picker to saved color
