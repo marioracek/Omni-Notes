@@ -107,8 +107,9 @@ public class CategoryActivity extends AppCompatActivity implements
 
   private void populateViews() {
     //TODO -> tu je nejaka moja zmena
-//    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
-//    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
+    //TODO -> ked to takto nastavim, tak to znamena, ze sa ten element nenahrava, funguje to, je to odskusane
+    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
+    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
     binding.categoryTitle.setText(category.getName());
     binding.categoryDescription.setText(category.getDescription());
     // Reset picker to saved color
@@ -151,6 +152,7 @@ public class CategoryActivity extends AppCompatActivity implements
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
     finish();
+    //TODO -> tu som mal predtym stop recording
     Smartlook.trackCustomEvent("save_note_custom_event");
   }
 
