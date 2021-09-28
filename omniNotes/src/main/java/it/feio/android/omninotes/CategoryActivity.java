@@ -25,11 +25,17 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.smartlook.sdk.smartlook.Smartlook;
+import com.smartlook.sdk.smartlook.core.video.sensitivity.model.SmartlookSensitivity;
+
 import de.greenrobot.event.EventBus;
 import it.feio.android.omninotes.async.bus.CategoriesUpdatedEvent;
 import it.feio.android.omninotes.databinding.ActivityCategoryBinding;
@@ -100,6 +106,8 @@ public class CategoryActivity extends AppCompatActivity implements
   }
 
   private void populateViews() {
+    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
+    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
     binding.categoryTitle.setText(category.getName());
     binding.categoryDescription.setText(category.getDescription());
     // Reset picker to saved color
@@ -119,6 +127,7 @@ public class CategoryActivity extends AppCompatActivity implements
   public void saveCategory() {
 
     if (binding.categoryTitle.getText().toString().length() == 0) {
+      Smartlook.trackCustomEvent("missing_title_custom_event");
       binding.categoryTitle.setError(getString(R.string.category_missing_title));
       return;
     }
@@ -140,10 +149,10 @@ public class CategoryActivity extends AppCompatActivity implements
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
     finish();
+    Smartlook.trackCustomEvent("save_note_custom_event");
   }
 
   public void deleteCategory() {
-
     new MaterialDialog.Builder(this)
         .title(R.string.delete_unused_category_confirmation)
         .content(R.string.delete_category_confirmation)
@@ -165,6 +174,7 @@ public class CategoryActivity extends AppCompatActivity implements
 
           setResult(RESULT_FIRST_USER);
           finish();
+          Smartlook.trackCustomEvent("delete_category_custom_event");
         }).build().show();
   }
 
