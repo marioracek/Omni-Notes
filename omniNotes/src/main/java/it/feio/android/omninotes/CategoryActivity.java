@@ -106,8 +106,6 @@ public class CategoryActivity extends AppCompatActivity implements
   }
 
   private void populateViews() {
-    //TODO -> tu je nejaka moja zmena
-    //TODO -> ked to takto nastavim, tak to znamena, ze sa ten element nenahrava, funguje to, je to odskusane
     ImageView btn = (ImageView) findViewById(R.id.color_chooser);
     Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
     binding.categoryTitle.setText(category.getName());
@@ -129,7 +127,6 @@ public class CategoryActivity extends AppCompatActivity implements
   public void saveCategory() {
 
     if (binding.categoryTitle.getText().toString().length() == 0) {
-      //TODO -> tu som mal predtym stop recording
       Smartlook.trackCustomEvent("missing_title_custom_event");
       binding.categoryTitle.setError(getString(R.string.category_missing_title));
       return;
@@ -152,7 +149,6 @@ public class CategoryActivity extends AppCompatActivity implements
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
     finish();
-    //TODO -> tu som mal predtym stop recording
     Smartlook.trackCustomEvent("save_note_custom_event");
   }
 
@@ -178,7 +174,6 @@ public class CategoryActivity extends AppCompatActivity implements
 
           setResult(RESULT_FIRST_USER);
           finish();
-          //TODO -> tu je nejaka moja zmena
           Smartlook.trackCustomEvent("delete_category_custom_event");
         }).build().show();
   }

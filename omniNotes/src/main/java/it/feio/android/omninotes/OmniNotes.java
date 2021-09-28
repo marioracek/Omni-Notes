@@ -71,7 +71,6 @@ public class OmniNotes extends MultiDexApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    //TODO -> tu je nejaka moja zmena
     Smartlook.setupAndStartRecording("bdfa7fd99606952035005492aef739884121a1d1");
     mContext = getApplicationContext();
     initSharedPreferences();

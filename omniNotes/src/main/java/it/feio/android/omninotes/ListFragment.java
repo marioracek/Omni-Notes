@@ -79,6 +79,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.smartlook.sdk.smartlook.Smartlook;
+
 import de.greenrobot.event.EventBus;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -1454,6 +1456,7 @@ public class ListFragment extends BaseFragment implements OnViewTouchedListener,
     } else {
       getSelectedNotes().clear();
     }
+    Smartlook.trackCustomEvent("archive_note_custom_event");
   }
 
 
