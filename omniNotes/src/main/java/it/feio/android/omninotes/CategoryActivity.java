@@ -106,8 +106,8 @@ public class CategoryActivity extends AppCompatActivity implements
   }
 
   private void populateViews() {
-    ImageView btn = (ImageView) findViewById(R.id.color_chooser);
-    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, btn);
+    ImageView viewColorChooser = (ImageView) findViewById(R.id.color_chooser);
+    Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, viewColorChooser);
     binding.categoryTitle.setText(category.getName());
     binding.categoryDescription.setText(category.getDescription());
     // Reset picker to saved color
@@ -149,7 +149,7 @@ public class CategoryActivity extends AppCompatActivity implements
     getIntent().putExtra(INTENT_CATEGORY, category);
     setResult(RESULT_OK, getIntent());
     finish();
-    Smartlook.trackCustomEvent("save_note_custom_event");
+    Smartlook.trackCustomEvent("save_category_custom_event");
   }
 
   public void deleteCategory() {
